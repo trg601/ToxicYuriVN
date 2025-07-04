@@ -26,3 +26,6 @@ _wfCache
 log.txt 
 errors.txt 
 traceback.txt
+
+# Ignore renpy warp extension file
+renpy_warp*.rpe.py

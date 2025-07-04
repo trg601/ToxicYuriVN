@@ -1,0 +1,10 @@
+{
+    "files.exclude": {
+        "**/*.rpyc": true,
+        "**/cache/**": true,
+        "**/*.rpa": true,
+        "**/*.rpymc": true,
+        "**/cache/": true,
+        "renpy_warp*.rpe.py": true
+    },
+}
