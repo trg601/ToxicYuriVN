@@ -5,6 +5,7 @@
 
 define r = Character("Robot", color="#008db0")
 define e = Character("DeVila Batteus", color="#b00d0d")
+define config.nearest_neighbor = True
 
 # The game starts here.
 

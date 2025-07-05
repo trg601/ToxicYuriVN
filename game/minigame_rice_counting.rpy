@@ -9,16 +9,19 @@ init python:
 
     RICE_COLORS = ["#ffffff", "#cccccc", "#999999"]
     CELL_SIZE = 10.0
-    CELL_OFFSET = CELL_SIZE * 0.3
     CELL_RADIUS = CELL_SIZE * 0.7
+    MINIGAME_WINDOW_WIDTH = 1000
+    MINIGAME_WINDOW_HEIGHT = 800
+    MINIGAME_WINDOW_X = (renpy.config.screen_width - MINIGAME_WINDOW_WIDTH) // 2
+    MINIGAME_WINDOW_Y = (renpy.config.screen_height - MINIGAME_WINDOW_HEIGHT) // 2
 
     class RiceCountingGame(renpy.Displayable):
         def __init__(self, **kwargs):
             super(RiceCountingGame, self).__init__(**kwargs)
-            self.width = 1000
-            self.height = 800
-            self.x = (renpy.config.screen_width - self.width) // 2
-            self.y = (renpy.config.screen_height - self.height) // 2
+            self.width = MINIGAME_WINDOW_WIDTH
+            self.height = MINIGAME_WINDOW_HEIGHT
+            self.x = MINIGAME_WINDOW_X
+            self.y = MINIGAME_WINDOW_Y
             self.process_timer = 0.0
             self.prev_st = None
 
@@ -31,6 +34,7 @@ init python:
             self.rice_grid = [[0 for x in range(self.grid_width)] for y in range(self.grid_height)]
             self.total_rice = 0
             self.rice_held = 0
+            self.rice_counted = 0
 
             for _ in range(10):
                 rx = random.randint(5, self.grid_width - 6)
@@ -92,15 +96,16 @@ init python:
         def render(self, width, height, st, at):
             """Render the game"""
             render = renpy.Render(width, height)
-            render.fill("#290b48b1")  # Background color
             canvas = render.canvas()
+            canvas.rect("#290b48ff", (self.x, self.y, self.width, self.height))
 
             delta_time = st - (self.prev_st or st)
             self.prev_st = st
             self.process_timer += delta_time
 
             if self.process_timer > 0.01:
-                self.process(st)
+                for _ in range(3):
+                    self.process(st)
                 self.process_timer = 0.0
                 
             # Draw the rice grid
@@ -109,10 +114,10 @@ init python:
                     if value := self.rice_grid[y][x]:
                         canvas.circle(
                             RICE_COLORS[value - 1],
-                            (self.x + (x * CELL_SIZE - CELL_OFFSET), self.y + (y * CELL_SIZE - CELL_OFFSET)),
+                            (self.x + (x * CELL_SIZE), self.y + (y * CELL_SIZE)),
                             CELL_RADIUS, CELL_RADIUS
                         )
-            
+
             renpy.redraw(self, 0)
             return render
 
@@ -126,7 +131,16 @@ init python:
                     rice_before = self.total_rice
                     self.remove_circle(x, y, 5)
                     self.rice_held = rice_before - self.total_rice
-                renpy.notify("Rice held: %d" % self.rice_held)
+
+            # If all rice is collected, game over
+            if self.total_rice <= 0 and self.rice_held == 0:
+                renpy.notify("All rice collected!")
+                return 1
+                
+        def add_to_bin(self):
+            self.rice_counted += self.rice_held
+            self.rice_held = 0
+            renpy.notify("Rice added to bin!")
 
 screen rice_counting_game:
     tag minigame
@@ -136,3 +150,38 @@ screen rice_counting_game:
     add game:
         xalign 0.5
         yalign 0.5
+    use window_frame(x=MINIGAME_WINDOW_X, y=MINIGAME_WINDOW_Y, width=MINIGAME_WINDOW_WIDTH, height=MINIGAME_WINDOW_HEIGHT)
+
+    default do_shake = False
+
+    imagebutton:
+        idle "gui/trash bin.png"
+        hover "gui/trash bin.png"
+        xpos MINIGAME_WINDOW_X + MINIGAME_WINDOW_WIDTH + 50
+        ypos MINIGAME_WINDOW_Y + MINIGAME_WINDOW_HEIGHT - 300
+        action [Function(game.add_to_bin)]
+    text "[game.rice_counted] grains of rice" xpos MINIGAME_WINDOW_X + MINIGAME_WINDOW_WIDTH + 50 ypos MINIGAME_WINDOW_Y + MINIGAME_WINDOW_HEIGHT + 20 color "#ffffff" size 32
+
+    use streamer_window
+
+screen window_frame(x=0, y=0, width=800, height=600):
+    add Frame("gui/window frame.png", 14, 58) xpos x ypos y xoffset -8 yoffset -8 xsize width + 16 ysize height + 16
+    add "gui/window x button.png" xpos x + width - 40 ypos y + 10
+
+screen streamer_window:
+    # Lil "streamer" view of daisy bot
+    tag streamer_window
+
+    $ window_width = 400
+    $ window_height = 300
+
+    frame:
+        xalign 0.0
+        yalign 1.0
+        xoffset 20
+        yoffset -40
+        xsize window_width
+        ysize window_height
+        background "#583051ff"
+        add "robot" crop (130, 0, window_width, window_height)
+        use window_frame(width=window_width, height=window_height)
