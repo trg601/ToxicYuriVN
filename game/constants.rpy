@@ -12,3 +12,4 @@ define COLOR_TEXT_MENU = "#ffffff"
 
 # Other colors
 define COLOR_ACCENT = "#007acc"
+
