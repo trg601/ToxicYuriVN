@@ -1,8 +1,4 @@
 
-label test_game:
-    scene castle
-    call screen rice_counting_game
-
 init python:
     import random
     import pygame
@@ -10,10 +6,6 @@ init python:
     RICE_COLORS = ["#ffffff", "#cccccc", "#999999"]
     CELL_SIZE = 10.0
     CELL_RADIUS = CELL_SIZE * 0.7
-    MINIGAME_WINDOW_WIDTH = 1000
-    MINIGAME_WINDOW_HEIGHT = 800
-    MINIGAME_WINDOW_X = (renpy.config.screen_width - MINIGAME_WINDOW_WIDTH) // 2
-    MINIGAME_WINDOW_Y = (renpy.config.screen_height - MINIGAME_WINDOW_HEIGHT) // 2
 
     class RiceCountingGame(renpy.Displayable):
         def __init__(self, **kwargs):
@@ -122,6 +114,7 @@ init python:
             return render
 
         def event(self, ev, x, y, st):
+            global default_mouse
             if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
                 x = int(x - self.x) // int(CELL_SIZE)
                 y = int(y - self.y) // int(CELL_SIZE)
@@ -131,6 +124,7 @@ init python:
                     rice_before = self.total_rice
                     self.remove_circle(x, y, 5)
                     self.rice_held = rice_before - self.total_rice
+                default_mouse = "grab" if self.rice_held > 0 else None
 
             # If all rice is collected, game over
             if self.total_rice <= 0 and self.rice_held == 0:
@@ -143,45 +137,17 @@ init python:
             renpy.notify("Rice added to bin!")
 
 screen rice_counting_game:
-    tag minigame
+    # custom mouse cursor
+    on "show" action SetField(config, "mouse_displayable", MouseDisplayable("gui/hand open.png", 50, 50).add("grab", "gui/hand grab.png", 50, 50))
+    on "hide" action SetField(config, "mouse_displayable", None)
 
-    default game = RiceCountingGame() 
-
-    add game:
-        xalign 0.5
-        yalign 0.5
-    use window_frame(x=MINIGAME_WINDOW_X, y=MINIGAME_WINDOW_Y, width=MINIGAME_WINDOW_WIDTH, height=MINIGAME_WINDOW_HEIGHT)
-
-    default do_shake = False
+    default game = RiceCountingGame()
+    use minigame(game)
 
     imagebutton:
         idle "gui/trash bin.png"
         hover "gui/trash bin.png"
         xpos MINIGAME_WINDOW_X + MINIGAME_WINDOW_WIDTH + 50
         ypos MINIGAME_WINDOW_Y + MINIGAME_WINDOW_HEIGHT - 300
-        action [Function(game.add_to_bin)]
+        action [Function(game.add_to_bin), SetVariable("default_mouse", None)]
     text "[game.rice_counted] grains of rice" xpos MINIGAME_WINDOW_X + MINIGAME_WINDOW_WIDTH + 50 ypos MINIGAME_WINDOW_Y + MINIGAME_WINDOW_HEIGHT + 20 color "#ffffff" size 32
-
-    use streamer_window
-
-screen window_frame(x=0, y=0, width=800, height=600):
-    add Frame("gui/window frame.png", 14, 58) xpos x ypos y xoffset -8 yoffset -8 xsize width + 16 ysize height + 16
-    add "gui/window x button.png" xpos x + width - 40 ypos y + 10
-
-screen streamer_window:
-    # Lil "streamer" view of daisy bot
-    tag streamer_window
-
-    $ window_width = 400
-    $ window_height = 300
-
-    frame:
-        xalign 0.0
-        yalign 1.0
-        xoffset 20
-        yoffset -40
-        xsize window_width
-        ysize window_height
-        background "#583051ff"
-        add "robot" crop (130, 0, window_width, window_height)
-        use window_frame(width=window_width, height=window_height)
