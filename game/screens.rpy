@@ -131,6 +131,7 @@ style namebox_label is say_label
 
 style window:
     xalign 0.5
+    yoffset -40
     xfill True
     yalign gui.textbox_yalign
     ysize gui.textbox_height
@@ -206,10 +207,24 @@ style input:
 
 screen choice(items):
     style_prefix "choice"
+    $ width = 80 + max([round(len(i.caption) * gui.text_size * 0.7) for i in items]) if items else 0
+    $ height = round(gui.text_size * len(items) * 1.5) + 60
 
-    vbox:
-        for i in items:
-            textbutton i.caption action i.action
+    window:
+        xalign 0.5
+        yalign 0.5
+        xsize width
+        ysize height
+        background COLOR_WINDOW_BG
+
+        fixed:
+            use window_frame(x=0, y=0, width=width, height=height)
+
+            vbox:
+                yoffset 8
+                for item in items:
+                    textbutton '> ' + item.caption:
+                        action item.action
 
 
 style choice_vbox is vbox
@@ -218,13 +233,7 @@ style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
-    ypos 405
-    yanchor 0.5
-
-    spacing gui.choice_spacing
-
-style choice_button is default:
-    properties gui.button_properties("choice_button")
+    yalign 0.5
 
 style choice_button_text is default:
     properties gui.text_properties("choice_button")
@@ -1189,6 +1198,7 @@ style confirm_frame:
 
 style confirm_prompt_text:
     textalign 0.5
+    color COLOR_TEXT
     layout "subtitle"
 
 style confirm_button:

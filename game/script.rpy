@@ -28,7 +28,7 @@ label start:
     r "wow.. I sure have been waiting a long while for DeVila to come back."
     r "I hope she comes back soon.."
 
-    call screen rice_counting_game
+    # call screen rice_counting_game
 
     show devila at right with moveinright
     e "Robot! I'm back!"
@@ -36,17 +36,18 @@ label start:
     r "DeVila! You're back!\nDid you beat them this time?"
     e "Er, I have some bad news, actually.\nI didn't beat them. But... I got you a present!"
     
-    show robot blush
+    # show robot blush
     r "A present? For me?"
     e "Yes! I got you a checklist, so now you can keep track of all the things you need to do!"
 
-    show robot annoyed
+    # show robot annoyed
     r "Oh.. Thank you"
     hide devila with moveoutright
     "At least it's something..."
 
-    "Throw the checklist away?"
     menu:
+        "Throw the checklist away?"
+
         "Yes":
             r "I don't need this. It's all in my head anyway."
             "You throw the checklist away."
