@@ -20,6 +20,7 @@ init python:
             # Initialize a grid with random rice counts
             self.grid_width = self.width // int(CELL_SIZE)
             self.grid_height = self.height // int(CELL_SIZE)
+            self.min_process_y = 0
             # self.rice_grid = [[
             #     random.choice([0, 0, 0, 0, 1, 2, 3]) * (1 if y < 50 and ( 25 < x < 75) else 0) for x in range(self.grid_width)]
             #     for y in range(self.grid_height)]

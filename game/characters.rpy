@@ -1,6 +1,7 @@
 
 define daisy = Character("Daisy-Bot", color="#008db0")
 define batta = Character("Batta S. DeVila", color="#b00d0d")
+define dog = Character("Moon Dog Chef", color="#3eb613")
 
 
 transform left:

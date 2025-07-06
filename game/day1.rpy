@@ -1,0 +1,199 @@
+label day1:
+    scene bedroom
+    menu:
+        "Test minigame?"
+
+        "No":
+            pass
+        "Rice Counting":
+            call screen rice_counting_game
+
+    # INT. BATTA'S BEDROOM, EARLY EVENING
+    scene bedroom
+    # OPEN on the bedroom of COUNTESS BATTA S. DEVILA, a Villaness who lives in a comically- spooky castle on the edge of the kingdom. Despite the keep's looming exterior, what we can see of Batta's room is a bit of a hodgepodge of different styles and interests- from the billowing, dramatic Victorian curtains to an evil Lightning McQueen racecar bed in the center of the room.
+    # This evening, Batta awakens from her evil slumber and begins preparing for the night ahead with the help of her trusty homemade vampiric thrall, DAISY-BOT.
+    show batta relaxed happy at right
+    batta "Oh DAISY-BOT, my precious little iron pill, you would not {i}believe{/i} the dream I just had-"
+    
+    show daisy neutral at left
+    daisy "My Lady, surely this might not be another one of your {i}fantasy dreams?{/i} Because I feel as your Chief of Staff, it is my duty to remind you that the floors in the West Hall corridor are {i}still{/i} not clean from the last one-"
+    
+    show batta relaxed flustered
+    batta "No, no no! Not one of those, although..."
+    
+    show batta relaxed sultry
+    batta "... I certainly wouldn't mind a repeat of last week's... experiment."
+    
+    show daisy flustered
+    daisy "My Lady-"
+    
+    batta "Not when gobbling you up satisfies almost as much as a freshly- bitten throat, my darling little bug~ Like licking between two bright new copper pennies every time I go d-"
+    
+    show batta relaxed confused
+    batta "-wait, that {i}was{/i} a week ago. What do you mean the West Hall still hasn't been cleaned yet?"
+    
+    show daisy neutral
+    daisy "Well Countess, between rebuilding the outer North Wall after your plan to destroy the Heroes with a catapult fell through-"
+    
+    show batta relaxed flustered
+    batta "Now just a moment, the engineering on my work was sound! Just because this castle was never fitted with a garage door, should that mean my poor contraption is simply doomed to never see the light of day? After all the effort I went through making it?"
+    
+    show batta relaxed haughty
+    batta "Anyways, I happened to find the massive gaping hole {i}quite striking-{/i}"
+    
+    daisy "-mending your robes after your scheme with the piranhas ran aground, finding new homes for the piranhas-"
+    
+    batta "So their Druid can talk to fish- big whoop! I can speak to bats, and they make far superior conversation partners. In fact, I'll bet I could talk to fish as well if I wanted to! Surely it's not so difficult if even They can manage it..."
+    
+    show daisy frustrated
+    daisy "-and un- bricking the main pc the castle's entire defense system runs on after the incident with the chain letter virus..."
+    
+    batta "What could a fish even have to say that's so interesting? They have a three- second memory, don't they? What could have been so funny that all of them couldn't stop laughing about it? Wait..."
+    
+    show batta relaxed shock
+    batta "You don't think those piranhas were talking shit about me, do you DAISY?"
+    
+    show daisy exsasperated
+    daisy "My Lady..."
+    
+    show batta relaxed angry
+    batta "Those little bitches..."
+    
+    show batta relaxed haughty
+    batta "Anyways, DAISY all I'm hearing is excuse after excuse! Are you not the Chief of my staff? Are you now somehow unable to order my Minions about in my steed to assist you in these matters? Do you think my thralls so incompetent, is that it?"
+    
+    show dog at center
+    dog "Your breakfast is served this evening, your Wickedness!"
+    
+    # The breakfast tray is comprised of a pack of poptarts (one with a large bite taken out of it), a string cheese, and a glass of blood with a large clump of fur floating in it.
+    dog "Also the toaster is broken again, your most Villainous."
+    
+    show batta relaxed shock
+    batta "..."
+    
+    show daisy neutral
+    daisy "..."
+    
+    show batta relaxed haughty
+    batta "And anyways, that shouldn't even matter! As I said, my engineering work speaks for itself- you are equipped to be more than capable of fulfilling all those tasks by yourself, no help required! I should know- I made you that way."
+    
+    show daisy exsasperated
+    daisy "Yes My Lady."
+    
+    batta "Are you daring to doubt the quality of your Mistress', no, your {i}Creator's{/i} work?"
+    
+    show daisy neutral
+    daisy "No, My Lady. I apologize for my repeated inadequacy. I will see to it with haste this evening."
+    
+    batta "See that you do. In fact, by the end of this week, I want this place looking like a brand new creepy old evil castle! I need all hands (still attached or not) on deck- we're going to be having company, after all!"
+    
+    show daisy suprised
+    daisy "My Lady?"
+    
+    show batta relaxed excited
+    batta "My dream, DAISY, the dream I had this past day! It got me thinking about all these years- how much time I've spent chasing after those wretched Heroes who've managed to throw a wrench into my infallible evil plans time after time again! It suddenly hit me so quickly all at once I nearly woke up in a cold sweat!"
+    
+    daisy "You don't mean-"
+    
+    show batta relaxed haughty
+    batta "Which I didn't, by the way. Mostly because bats cannot sweat, and also beautiful Evil Ladies don't sweat either. You can look that up, it's true. And since I'm the perfect combination of both I would obviously never do something so debasing."
+    
+    show batta relaxed flustered
+    batta "But, on the off- chance that I somehow was able to do something like that, just theoretically-"
+    
+    daisy "My Lady, I'll be sure to send for a change of sheets later. But tell me you're saying what I-"
+    
+    show batta relaxed haughty
+    batta "Yes, my dream! I finally see it now DAISY, like a looming premonition from Lady Light Herself!"
+    
+    show daisy excited
+    daisy "!!!"
+    
+    batta "I saw three brand- new plans to kill those pesky protagonists- ones that are guaranteed to never fail no matter what they might try and pull! And once that's taken care of, I'll finally make this pathetic Kingdom and all its pathetic peasants mine to rule over once and for all!!"
+    
+    show daisy neutral
+    daisy "..."
+    
+    daisy "oh."
+    
+    show batta relaxed shock
+    batta "\"oh.\"? What do you mean by \"oh.\"??"
+    
+    show batta relaxed haughty
+    batta "Have your processors been overloaded with joy at the thought of your Dear Villeness' moment of triumph being nearly at hand?"
+    
+    batta "Because I'll level with you, my Darling- I'm very nearly in the same boat."
+    
+    daisy "No, My Lady. It's just..."
+    
+    daisy "I sit here and comb your hair while you tell me nearly the same thing each week, and yet it feels as if we are never any closer to achieving our goals..."
+    
+    show batta relaxed shock
+    batta "O- our goal-?!"
+    
+    daisy "This obsession with destroying a few inconsequential adventurers... I just worry it's holding you back from the true peak of your Evil- ness, My Lady."
+    
+    show daisy excited
+    daisy "That perhaps, if you were to let them go like the pathetic glitches that they are, and focused on the bigger picture we might-"
+    
+    show batta normal neutral
+    batta "Who said anything about \"we\"?"
+    
+    show daisy neutral
+    daisy "..."
+    
+    batta "Are you doubting my ability, Daisy? My capacity for wickedness?"
+    
+    batta "Do you really think me so incompetent that I'd stoop to needing {i}your help{/i} for anything other than polishing my cutlery and warming my bed?"
+    
+    daisy "No, My Lady."
+    
+    batta "Do you take me for some kind of obsessive {i}fool?{/i} That I couldn't just... stop doing this at any time if I thought that was what was best for {i}my{/i} interests? For {i}MY{/i} wicked goals?"
+    
+    daisy "...no, My Lady."
+    
+    batta "That's what I thought."
+    
+    dog "I mean, you've never been able to stop them before though, your Wretchedness-"
+    
+    hide dog
+    dog "AHHHHHHHHH-"
+    
+    show batta normal bloody mouth
+    batta "I made you, in case you've somehow forgotten that."
+    
+    daisy "...you never let me forget-"
+    
+    batta "I can unmake you just as easily, remake you into a far more agreeable shape."
+    
+    batta "Like you once were before, DAISY..."
+    
+    batta "Get to work."
+    
+    daisy "..."
+    
+    daisy "Yes, My Lady. Forgive me. I spoke out of turn. It won't happen again."
+    
+    batta "Begin by cleaning this mess up, if you're so sorry. Then let the rest of the Minions know to begin preparations for tomorrow..."
+    
+    batta "The Heroes die by week's end. For sure, this time"
+    
+    show batta normal bloody mouth smile
+    batta "And soon the pathetic humans of this Kingdom will come running to me to beg for mercy, and they'll have a nice, spotless floor to fall to their knees and beg upon!"
+    
+    batta "HAHAHAHAHAHAHAHAHA!!!"
+    
+    batta "..."
+    
+    show batta normal bloody mouth frown
+    batta "DAISY, do you think it's more evil to make the quaking masses kneel on a dirty floor? Or will that just make us look bad?"
+    
+    batta "Like, I don't want them to be {i}comfortable,{/i} but I don't want it to look like we live in squalor, you know?"
+    
+    batta "... DAISY?"
+    
+    batta "She... she already left..."
+    
+    batta "..."
+    
+    "DA"

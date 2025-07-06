@@ -1,5 +1,7 @@
 ﻿label start:
 
+    jump day1
+
     scene castle
 
     show robot at left
