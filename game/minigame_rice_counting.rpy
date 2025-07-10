@@ -198,8 +198,17 @@ init python:
                 self.rice_counted += self.rice_held
             self.rice_held = 0
             renpy.restart_interaction()  # Ensure the label updates after rice is counted
-
+        
+        def click_inventory(self):
+            """Handle clicking on the inventory icon."""
+            global default_mouse
+            if self.rice_held > 0 and try_add_inventory_item("Rice", "A handful of rice.", "robot"):
+                self.rice_held = 0
+                default_mouse = None
+            
 screen rice_counting_game:
+    tag minigame
+
     # custom mouse cursor
     on "show" action SetField(config, "mouse_displayable", MouseDisplayable("gui/hand open.png", 50, 50).add("grab", "gui/hand grab.png", 50, 50))
     on "hide" action SetField(config, "mouse_displayable", None)
