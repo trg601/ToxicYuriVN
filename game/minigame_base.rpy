@@ -11,7 +11,7 @@ transform WaveBackground:
 screen window_frame(x=0, y=0, width=800, height=600):
     add Frame("gui/window frame.png", 75, 75) xpos x ypos y xoffset -8 yoffset -8 xsize width + 12 ysize height + 12
 
-screen streamer_window:
+screen streamer_window(game):
     # Lil "streamer" view of daisy bot
     tag streamer_window
 
@@ -25,6 +25,7 @@ screen streamer_window:
         yoffset -40
         xsize window_width
         ysize window_height
+        button action Function(game.click_inventory)
         background "#583051ff"
         add "robot" crop (20, -50, window_width, window_height)
         use window_frame(width=window_width, height=window_height)
@@ -39,7 +40,7 @@ screen minigame(game, title=""):
         yalign 0.5
     use window_frame(x=MINIGAME_WINDOW_X, y=MINIGAME_WINDOW_Y, width=MINIGAME_WINDOW_WIDTH, height=MINIGAME_WINDOW_HEIGHT)
 
-    use streamer_window
+    use streamer_window(game)
 
     text title:
         color "#ffffff"

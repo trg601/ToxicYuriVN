@@ -17,7 +17,8 @@ init python:
         global folder_open
 
         if not any(item.name == name for item in inventory_items):
-            inventory_items.append(InventoryItem(name, description, image))                
+            inventory_items.append(InventoryItem(name, description, image))    
+            folder_open = True            
             return True
         return False
     

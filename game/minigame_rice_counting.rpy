@@ -205,6 +205,7 @@ init python:
             if self.rice_held > 0 and try_add_inventory_item("Rice", "A handful of rice.", "robot"):
                 self.rice_held = 0
                 default_mouse = None
+                renpy.restart_interaction()
             
 screen rice_counting_game:
     tag minigame
