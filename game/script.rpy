@@ -1,8 +1,10 @@
-﻿label start:
+﻿default mouse_displayable = None
+
+label start:
 
     jump day1
 
-    scene castle
+    scene bedroom
 
     show robot at left
 

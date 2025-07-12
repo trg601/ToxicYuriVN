@@ -30,20 +30,29 @@ screen streamer_window(game):
         add "robot" crop (20, -50, window_width, window_height)
         use window_frame(width=window_width, height=window_height)
 
-screen minigame(game, title=""):
+screen minigame(game, title="", background_color="#290b48ff"):
     tag minigame
 
     add Tile("minigame background") at WaveBackground
     
-    add game:
-        xalign 0.5
-        yalign 0.5
-    use window_frame(x=MINIGAME_WINDOW_X, y=MINIGAME_WINDOW_Y, width=MINIGAME_WINDOW_WIDTH, height=MINIGAME_WINDOW_HEIGHT)
+    on "show" action SetField(config, "mouse_displayable", MouseDisplayable("gui/hand open.png", 50, 50).add("grab", "gui/hand grab.png", 50, 50))
+    on "hide" action SetField(config, "mouse_displayable", None)
+
+    add Solid(background_color):
+        xpos MINIGAME_WINDOW_X
+        ypos MINIGAME_WINDOW_Y
+        xsize MINIGAME_WINDOW_WIDTH
+        ysize MINIGAME_WINDOW_HEIGHT
 
     use streamer_window(game)
 
+    use window_frame(x=MINIGAME_WINDOW_X, y=MINIGAME_WINDOW_Y, width=MINIGAME_WINDOW_WIDTH, height=MINIGAME_WINDOW_HEIGHT)
+    add game:
+        xalign 0.5
+        yalign 0.5
+
     text title:
-        color "#ffffff"
+        style "outline_text"
         size 90
         xalign 0.5
         yalign 0.5

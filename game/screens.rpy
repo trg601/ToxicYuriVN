@@ -76,6 +76,10 @@ style frame:
     background Frame("gui/frame.png", gui.frame_borders, tile=gui.frame_tile)
 
 
+style outline_text:
+    outlines [ (0, "#00000080", 2, 2) ]
+    color "#ffffff"
+
 
 ################################################################################
 ## In-game screens
@@ -132,11 +136,11 @@ style namebox_label is say_label
 style window:
     xalign 0.5
     yoffset -40
-    xfill True
+    xsize gui.dialogue_width
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
-    background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
+    background Frame("gui/frame.png", 75, 75, xalign=0.5, yalign=1.0)
 
 style namebox:
     xpos gui.name_xpos
@@ -257,7 +261,7 @@ screen quick_menu():
             xalign 0.5
             yalign 1.0
 
-            textbutton _("Back") action Rollback()
+            textbutton _("Back") action [SetField(config, "mouse_displayable", None), Rollback()]
             textbutton _("History") action ShowMenu('history')
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Auto") action Preference("auto-forward", "toggle")
@@ -1534,7 +1538,7 @@ screen quick_menu():
             xalign 0.5
             yalign 1.0
 
-            textbutton _("Back") action Rollback()
+            textbutton _("Back") action [SetField(config, "mouse_displayable", None), Rollback()]
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Auto") action Preference("auto-forward", "toggle")
             textbutton _("Menu") action ShowMenu()

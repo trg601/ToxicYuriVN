@@ -7,6 +7,8 @@ label day1:
             pass
         "Rice Counting":
             call screen rice_counting_game
+        "Pizza Degarlicking":
+            call screen pizza_degarlicking_game
 
     # INT. BATTA'S BEDROOM, EARLY EVENING
     scene bedroom

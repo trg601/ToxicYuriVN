@@ -104,8 +104,8 @@ define gui.textbox_yalign = 1.0
 
 ## The placement of the speaking character's name, relative to the textbox.
 ## These can be a whole number of pixels from the left or top, or 0.5 to center.
-define gui.name_xpos = 360
-define gui.name_ypos = 0
+define gui.name_xpos = 10
+define gui.name_ypos = -5
 
 ## The horizontal alignment of the character's name. This can be 0.0 for left-
 ## aligned, 0.5 for centered, and 1.0 for right-aligned.
@@ -128,11 +128,11 @@ define gui.namebox_tile = False
 ## The placement of dialogue relative to the textbox. These can be a whole
 ## number of pixels relative to the left or top side of the textbox, or 0.5 to
 ## center.
-define gui.dialogue_xpos = 402
+define gui.dialogue_xpos = 20
 define gui.dialogue_ypos = 75
 
 ## The maximum width of dialogue text, in pixels.
-define gui.dialogue_width = 1116
+define gui.dialogue_width = 1400
 
 ## The horizontal alignment of the dialogue text. This can be 0.0 for left-
 ## aligned, 0.5 for centered, and 1.0 for right-aligned.
@@ -179,8 +179,14 @@ define gui.button_text_xalign = 0.0
 ## These customizations are used by the default interface:
 
 define gui.radio_button_borders = Borders(27, 6, 6, 6)
+define gui.radio_button_text_idle_color = COLOR_TEXT_MENU
+define gui.radio_button_text_hover_color = COLOR_HOVER
+define gui.radio_button_text_selected_color = COLOR_SELECT
 
 define gui.check_button_borders = Borders(27, 6, 6, 6)
+define gui.check_button_text_idle_color = COLOR_TEXT_MENU
+define gui.check_button_text_hover_color = COLOR_HOVER
+define gui.check_button_text_selected_color = COLOR_SELECT
 
 define gui.confirm_button_text_xalign = 0.5
 
