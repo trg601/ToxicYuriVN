@@ -21,6 +21,11 @@ init python:
             folder_open = True
             return True
         return False
+
+    def close_inventory():
+        """Close the inventory screen."""
+        global folder_open
+        folder_open = False
     
     def clicked_inventory_icon():
         """Handle clicking on the inventory icon."""
@@ -29,6 +34,19 @@ init python:
         folder_open = not folder_open
         if renpy.get_screen("minigame") and (game := renpy.get_screen_variable("game", screen="minigame")):
             game.click_inventory()
+
+screen inventory_item(item, button_size, image):
+    vbox:
+        spacing 10
+        button:
+            xsize button_size
+            ysize button_size
+            add f"gui/item slot {image}.png" xsize button_size ysize button_size
+            if item:
+                add item.image xsize button_size ysize button_size
+                action Notify("You clicked on " + item.name)
+                hovered SetField(item, "is_hovered", True)
+                unhovered SetField(item, "is_hovered", False)
 
 screen inventory:
     tag inventory
@@ -58,52 +76,21 @@ screen inventory:
             $ inv_len = len(inventory_items)
             for i in range(max(3, len(inventory_items))):
                 $ item = inventory_items[i] if i < inv_len else None
-                vbox:
-                    spacing 10
-                    button:
-                        xsize button_size
-                        ysize button_size
-                        add "gui/item slot red.png" xsize button_size ysize button_size
-                        if item:
-                            add item.image xsize button_size ysize button_size
-                            action Notify("You clicked on " + item.name)
-                            hovered SetField(item, "is_hovered", True)
-                            unhovered SetField(item, "is_hovered", False)
-                    if item and item.is_hovered:
-                        $ hover_item = item
-                        $ hover_index = i
+                use inventory_item(item, button_size, "red")
+                if item and item.is_hovered:
+                    $ hover_item = item
+                    $ hover_index = i
             # Green items
             $ green_inv_len = len(green_inventory_items)
             for i in range(max(2, len(green_inventory_items))):
                 $ item = green_inventory_items[i] if i < green_inv_len else None
-                vbox:
-                    spacing 10
-                    button:
-                        xsize button_size
-                        ysize button_size
-                        add "gui/item slot green.png" xsize button_size ysize button_size
-                        if item:
-                            add item.image xsize button_size ysize button_size
-                            action Notify("You clicked on " + item.name)
-                            hovered SetField(item, "is_hovered", True)
-                            unhovered SetField(item, "is_hovered", False)
-                    if item and item.is_hovered:
-                        $ hover_item = item
-                        $ hover_index = i + max(3, inv_len)
+                use inventory_item(item, button_size, "green")
+                if item and item.is_hovered:
+                    $ hover_item = item
+                    $ hover_index = i + max(3, inv_len)
     
+    # Show item details if hovered
     if folder_open and hover_item:
         text hover_item.description color COLOR_HOVER style "outline_text":
             xpos (button_size + 30) * (hover_index + 1) + 20
             ypos button_size + 40
-
-screen item_details(item):
-    tag item_details
-
-    text "AYO"
-
-    vbox:
-        xsize 300
-        ysize 200
-
-        text item.name
-        text item.description

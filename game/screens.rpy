@@ -1298,6 +1298,7 @@ style notify_frame is empty
 style notify_text is gui_text
 
 style notify_frame:
+    xalign 1.0
     ypos gui.notify_ypos
 
     background Frame("gui/notify.png", gui.notify_frame_borders, tile=gui.frame_tile)

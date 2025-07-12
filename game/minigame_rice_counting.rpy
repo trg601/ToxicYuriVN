@@ -180,6 +180,7 @@ init python:
             # If all rice is collected, game over
             if self.total_rice <= 0 and self.rice_held == 0 and self.rice_ball_x is None:
                 renpy.notify("All rice collected!")
+                close_inventory()
                 return 1
                 
         def add_to_bin(self, y: int, deposit_radius: int):

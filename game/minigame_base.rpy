@@ -5,6 +5,11 @@ init -10:
     define MINIGAME_WINDOW_X = (renpy.config.screen_width - MINIGAME_WINDOW_WIDTH) // 2
     define MINIGAME_WINDOW_Y = (renpy.config.screen_height - MINIGAME_WINDOW_HEIGHT) // 2
 
+    define STREAMER_WINDOW_WIDTH = 400
+    define STREAMER_WINDOW_HEIGHT = 300
+    define STREAMER_WINDOW_X = 20
+    define STREAMER_WINDOW_Y = renpy.config.screen_height - STREAMER_WINDOW_HEIGHT - 40
+
 transform WaveBackground:
     function WaveShader(amp=6, speed=0.03, period=8, repeat="mirror")
 
@@ -15,20 +20,15 @@ screen streamer_window(game):
     # Lil "streamer" view of daisy bot
     tag streamer_window
 
-    $ window_width = 400
-    $ window_height = 300
-
     frame:
-        xalign 0.0
-        yalign 1.0
-        xoffset 20
-        yoffset -40
-        xsize window_width
-        ysize window_height
+        xpos STREAMER_WINDOW_X
+        ypos STREAMER_WINDOW_Y
+        xsize STREAMER_WINDOW_WIDTH
+        ysize STREAMER_WINDOW_HEIGHT
         button action Function(game.click_inventory)
         background "#583051ff"
-        add "robot" crop (20, -50, window_width, window_height)
-        use window_frame(width=window_width, height=window_height)
+        add "robot" crop (20, -50, STREAMER_WINDOW_WIDTH, STREAMER_WINDOW_HEIGHT)
+        use window_frame(x=-2, width=STREAMER_WINDOW_WIDTH, height=STREAMER_WINDOW_HEIGHT)
 
 screen minigame(game, title="", background_color="#290b48ff"):
     tag minigame

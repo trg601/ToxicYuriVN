@@ -5,7 +5,7 @@
 ## may want to uncomment them when appropriate.
 
 
-define config.nearest_neighbor = True
+# define config.nearest_neighbor = True
 
 ## Basics ######################################################################
 
