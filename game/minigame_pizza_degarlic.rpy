@@ -29,6 +29,7 @@ init python:
     class PizzaDegarlickingGame(renpy.Displayable):
         def __init__(self, **kwargs):
             super(PizzaDegarlickingGame, self).__init__(**kwargs)
+            reset_minigame_screen_vars()
             self.width = MINIGAME_WINDOW_WIDTH
             self.height = MINIGAME_WINDOW_HEIGHT
             self.x = MINIGAME_WINDOW_X
@@ -140,7 +141,7 @@ init python:
             for garlic_piece in self.garlic:
                 if not garlic_piece.active:
                     continue
-                t = Transform(child="garlic", rotate=garlic_piece.angle, subpixel=True)
+                t = Transform(child="garlic", xcenter=0.5, ycenter=0.5, rotate=garlic_piece.angle, subpixel=True)
                 child_render = renpy.render(t, width, height, st, at)
                 render.blit(child_render, (garlic_piece.x + self.pizza_offset, garlic_piece.y))
 
@@ -177,7 +178,7 @@ init python:
                         self.held_garlic.target_x = x + self.drag_offset_x
                         self.held_garlic.target_y = y + self.drag_offset_y
             elif ev.type == pygame.MOUSEBUTTONUP and ev.button == 1:
-                default_mouse = None
+                default_mouse = "hand"
                 if self.held_garlic:
                     if self.held_garlic.stuck:
                         self.held_garlic.target_x = self.held_garlic.start_x
@@ -206,12 +207,12 @@ init python:
         
         def try_give_garlic(self, garlic_piece) -> bool:
             global default_mouse
-            if garlic_piece and try_add_inventory_item("Garlic", "A peeled garlic clove.", "gui/item garlic.png"):
+            if garlic_piece and try_add_inventory_item("Garlic", "A peeled garlic clove.", "gui/item garlic.png", 2):
                 garlic_piece.active = False
                 self.garlic_remaining -= 1
                 if self.held_garlic == garlic_piece:
                     self.held_garlic = None
-                    default_mouse = None
+                    default_mouse = "hand"
                 renpy.restart_interaction()
                 return True
             return False
@@ -225,7 +226,7 @@ screen pizza_degarlicking_game:
 
     default game = PizzaDegarlickingGame()
     use minigame(game, "Remove all the garlic!", background_color="#6c0141ff")
-    text "[game.garlic_remaining] garlic pieces remaining":
+    text "degarlicking.exe - [game.garlic_remaining] garlic pieces remaining":
         style "outline_text"
         xpos MINIGAME_WINDOW_X + 20
         ypos MINIGAME_WINDOW_Y

@@ -9,6 +9,8 @@ label day1:
             call screen rice_counting_game
         "Pizza Degarlicking":
             call screen pizza_degarlicking_game
+        "Destroy Relics":
+            call screen destroy_relics_game
 
     # INT. BATTA'S BEDROOM, EARLY EVENING
     scene bedroom

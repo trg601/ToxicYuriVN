@@ -1,7 +1,7 @@
 
-define daisy = Character("Daisy-Bot", color="#00ccff")
-define batta = Character("Batta S. DeVila", color="#ff0000")
-define dog = Character("Moon Dog Chef", color="#3eb613")
+define daisy = Character("Daisy-Bot", color="#ffffff")
+define batta = Character("Batta S. DeVila", color="#ffffff")
+define dog = Character("Moon Dog Chef", color="#ffffff")
 
 
 transform left:

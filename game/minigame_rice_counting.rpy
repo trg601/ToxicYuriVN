@@ -11,6 +11,7 @@ init python:
     class RiceCountingGame(renpy.Displayable):
         def __init__(self, **kwargs):
             super(RiceCountingGame, self).__init__(**kwargs)
+            reset_minigame_screen_vars()
             self.width = MINIGAME_WINDOW_WIDTH
             self.height = MINIGAME_WINDOW_HEIGHT
             self.x = MINIGAME_WINDOW_X
@@ -175,7 +176,7 @@ init python:
                     rice_before = self.total_rice
                     self.remove_circle(mx, my, self.rice_grab_radius)
                     self.rice_held = rice_before - self.total_rice
-                default_mouse = "grab" if self.rice_held > 0 else None
+                default_mouse = "grab" if self.rice_held > 0 else "hand"
 
             # If all rice is collected, game over
             if self.total_rice <= 0 and self.rice_held == 0 and self.rice_ball_x is None:
@@ -202,9 +203,9 @@ init python:
         def click_inventory(self):
             """Handle clicking on the inventory icon."""
             global default_mouse
-            if self.rice_held > 0 and try_add_inventory_item("Rice", "A handful of rice.", "gui/item rice.png"):
+            if self.rice_held > 0 and try_add_inventory_item("Rice", "A handful of rice.", "gui/item rice.png", 0):
                 self.rice_held = 0
-                default_mouse = None
+                default_mouse = "hand"
                 renpy.restart_interaction()
             
 screen rice_counting_game:
@@ -218,4 +219,10 @@ screen rice_counting_game:
         style "outline_text"
         xpos MINIGAME_WINDOW_X + MINIGAME_WINDOW_WIDTH + 50
         ypos MINIGAME_WINDOW_Y + MINIGAME_WINDOW_HEIGHT + 20
+        size 32
+    
+    text "counting_rice.exe":
+        style "outline_text"
+        xpos MINIGAME_WINDOW_X + 20
+        ypos MINIGAME_WINDOW_Y
         size 32

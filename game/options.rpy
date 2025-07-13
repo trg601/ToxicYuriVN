@@ -40,7 +40,7 @@ Uses Wave Shader by Daniel Westfall (https://wattson.itch.io/renpy-wave-shader)
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "MyBossIsAVillainessVampireAndSheSucksAtHerJob"
+define build.name = "MyBossIsAVillainess"
 
 
 ## Sounds and music ############################################################

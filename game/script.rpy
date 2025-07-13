@@ -1,4 +1,5 @@
-﻿default mouse_displayable = None
+﻿init:
+    define config.mouse_displayable = MouseDisplayable("gui/cursor.png", 24, 19).add("hand", "gui/hand open.png", 50, 50).add("grab", "gui/hand grab.png", 50, 50)
 
 label start:
 

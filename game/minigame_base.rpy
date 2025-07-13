@@ -1,14 +1,18 @@
 
-init -10:
-    define MINIGAME_WINDOW_WIDTH = 1000
-    define MINIGAME_WINDOW_HEIGHT = 800
-    define MINIGAME_WINDOW_X = (renpy.config.screen_width - MINIGAME_WINDOW_WIDTH) // 2
-    define MINIGAME_WINDOW_Y = (renpy.config.screen_height - MINIGAME_WINDOW_HEIGHT) // 2
+init -5 python:
+    def reset_minigame_screen_vars():
+        global MINIGAME_WINDOW_WIDTH, MINIGAME_WINDOW_HEIGHT, MINIGAME_WINDOW_X, MINIGAME_WINDOW_Y
+        global STREAMER_WINDOW_WIDTH, STREAMER_WINDOW_HEIGHT, STREAMER_WINDOW_X, STREAMER_WINDOW_Y
+        MINIGAME_WINDOW_WIDTH = 1000
+        MINIGAME_WINDOW_HEIGHT = 800
+        MINIGAME_WINDOW_X = (renpy.config.screen_width - MINIGAME_WINDOW_WIDTH) // 2
+        MINIGAME_WINDOW_Y = (renpy.config.screen_height - MINIGAME_WINDOW_HEIGHT) // 2
 
-    define STREAMER_WINDOW_WIDTH = 400
-    define STREAMER_WINDOW_HEIGHT = 300
-    define STREAMER_WINDOW_X = 20
-    define STREAMER_WINDOW_Y = renpy.config.screen_height - STREAMER_WINDOW_HEIGHT - 40
+        STREAMER_WINDOW_WIDTH = 400
+        STREAMER_WINDOW_HEIGHT = 300
+        STREAMER_WINDOW_X = 20
+        STREAMER_WINDOW_Y = renpy.config.screen_height - STREAMER_WINDOW_HEIGHT - 40
+    reset_minigame_screen_vars()
 
 transform WaveBackground:
     function WaveShader(amp=6, speed=0.03, period=8, repeat="mirror")
@@ -34,9 +38,8 @@ screen minigame(game, title="", background_color="#290b48ff"):
     tag minigame
 
     add Tile("minigame background") at WaveBackground
-    
-    on "show" action SetField(config, "mouse_displayable", MouseDisplayable("gui/hand open.png", 50, 50).add("grab", "gui/hand grab.png", 50, 50))
-    on "hide" action SetField(config, "mouse_displayable", None)
+
+    on "show" action SetVariable("default_mouse", "hand")
 
     add Solid(background_color):
         xpos MINIGAME_WINDOW_X

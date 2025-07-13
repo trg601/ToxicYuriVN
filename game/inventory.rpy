@@ -1,5 +1,4 @@
-default inventory_items = []
-default green_inventory_items = []
+default inventory_items = [None] * 5
 default folder_open = False
 
 init python:
@@ -12,12 +11,14 @@ init python:
             self.image = image
             self.is_hovered = False
     
-    def try_add_inventory_item(name: str, description: str, image: str, green_item: bool = False) -> bool:
+    def try_add_inventory_item(name: str, description: str, image: str, index: int = None) -> bool:
         """Try to add an item to the inventory."""
         global folder_open
-        item_list = green_inventory_items if green_item else inventory_items
-        if not any(item.name == name for item in item_list):
-            item_list.append(InventoryItem(name, description, image))    
+        if True == True or not any(item.name == name for item in inventory_items):
+            if index is not None and 0 <= index < len(inventory_items) and inventory_items[index] is None:
+                inventory_items[index] = InventoryItem(name, description, image)
+            else:
+                inventory_items.insert(len(inventory_items), InventoryItem(name, description, image))
             folder_open = True
             return True
         return False
@@ -58,8 +59,8 @@ screen inventory:
     $ hover_index = 0
 
     hbox:
-        xoffset 30
-        yoffset 30
+        xoffset 15
+        yoffset 15
         spacing 30
 
         button:
@@ -72,22 +73,14 @@ screen inventory:
             ) xsize button_size ysize button_size
 
         if folder_open:
-            # Red items
             $ inv_len = len(inventory_items)
-            for i in range(max(3, len(inventory_items))):
+            for i in range(max(5, inv_len)):
+                $ red = (i % 2 == 0)
                 $ item = inventory_items[i] if i < inv_len else None
-                use inventory_item(item, button_size, "red")
+                use inventory_item(item, button_size, "red" if red else "green")
                 if item and item.is_hovered:
                     $ hover_item = item
                     $ hover_index = i
-            # Green items
-            $ green_inv_len = len(green_inventory_items)
-            for i in range(max(2, len(green_inventory_items))):
-                $ item = green_inventory_items[i] if i < green_inv_len else None
-                use inventory_item(item, button_size, "green")
-                if item and item.is_hovered:
-                    $ hover_item = item
-                    $ hover_index = i + max(3, inv_len)
     
     # Show item details if hovered
     if folder_open and hover_item:
