@@ -62,5 +62,5 @@ screen minigame(game, title="", background_color="#290b48ff"):
         at fadeout
 
 transform fadeout:
-    ease 1.0 alpha 1.0
+    ease 2.0 alpha 1.0
     ease 1.0 alpha 0.0

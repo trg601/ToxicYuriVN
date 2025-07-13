@@ -35,6 +35,16 @@ init python:
         folder_open = not folder_open
         if renpy.get_screen("minigame") and (game := renpy.get_screen_variable("game", screen="minigame")):
             game.click_inventory()
+    
+    def has_all_dangerous_items() -> bool:
+        """Check if the player has all dangerous items."""
+        dangerous_items = ["Relic", "Garlic", "Rice"]
+        return all(item in (item.name for item in inventory_items if item) for item in dangerous_items)
+
+    def has_all_upgrade_items() -> bool:
+        """Check if the player has all upgrade items."""
+        upgrade_items = ["Weedwhacker", "Bucket"]
+        return all(item in (item.name for item in inventory_items if item) for item in upgrade_items)
 
 screen inventory_item(item, button_size, image):
     vbox:

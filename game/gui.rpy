@@ -15,6 +15,9 @@ init python:
 define config.check_conflicting_properties = True
 
 
+define config.mouse_displayable = MouseDisplayable("gui/cursor.png", 24, 19).add("hand", "gui/hand open.png", 50, 50).add("grab", "gui/hand grab.png", 50, 50)
+
+
 ################################################################################
 ## GUI Configuration Variables
 ################################################################################
@@ -107,6 +110,7 @@ define gui.textbox_yalign = 1.0
 ## These can be a whole number of pixels from the left or top, or 0.5 to center.
 define gui.name_xpos = 10
 define gui.name_ypos = -5
+define gui.name_text_color = "#ffffff"
 
 ## The horizontal alignment of the character's name. This can be 0.0 for left-
 ## aligned, 0.5 for centered, and 1.0 for right-aligned.
