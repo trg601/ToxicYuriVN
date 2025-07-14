@@ -32,6 +32,18 @@ define config.version = "1.0"
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
+coding, implementation - Tyler Garman (@ trg601​)
+
+writing, additional art - Caspian O (@ harlequin_draws)
+
+character designs + portraits - Vi Abella (@ starozoa)
+
+music, backgrounds - Hazel (@ SoupCube)
+
+UI Art - Jared (@ tabidane)
+
+backgrounds, additional writing - Tikal
+
 Uses Wave Shader by Daniel Westfall (https://wattson.itch.io/renpy-wave-shader)
 """)
 

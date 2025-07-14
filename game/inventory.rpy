@@ -14,11 +14,12 @@ init python:
     def try_add_inventory_item(name: str, description: str, image: str, index: int = None) -> bool:
         """Try to add an item to the inventory."""
         global folder_open
-        if True == True or not any(item.name == name for item in inventory_items):
+        if not any(item.name == name for item in inventory_items if item):
             if index is not None and 0 <= index < len(inventory_items) and inventory_items[index] is None:
                 inventory_items[index] = InventoryItem(name, description, image)
             else:
                 inventory_items.insert(len(inventory_items), InventoryItem(name, description, image))
+            renpy.sound.play("item get!.mp3")
             folder_open = True
             return True
         return False
@@ -43,7 +44,7 @@ init python:
 
     def has_all_upgrade_items() -> bool:
         """Check if the player has all upgrade items."""
-        upgrade_items = ["Weedwhacker", "Bucket"]
+        upgrade_items = ["Laser weedwhacker", "Vomit bucket"]
         return all(item in (item.name for item in inventory_items if item) for item in upgrade_items)
 
 screen inventory_item(item, button_size, image):

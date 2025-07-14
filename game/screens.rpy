@@ -116,8 +116,17 @@ screen say(who, what):
 
     ## If there's a side image, display it above the text. Do not display on the
     ## phone variant - there's no room.
-    if not renpy.variant("small"):
-        add SideImage() xalign 0.0 yalign 1.0
+    ####### ACTUALLY FUCK YOU REN'PY I DO WHAT I WISH!
+    fixed:
+        xsize gui.dialogue_width
+        ysize gui.textbox_height - 60
+        xalign 0.0
+        yalign gui.textbox_yalign
+        yoffset -55
+        xoffset 280
+        xfit True
+        yfit True
+        add SideImage() fit "contain"
 
 
 ## Make the namebox available for styling through the Character object.
@@ -163,6 +172,17 @@ style say_dialogue:
     xpos gui.dialogue_xpos
     xsize gui.dialogue_width - gui.dialogue_xpos
     ypos gui.dialogue_ypos
+
+
+
+screen day_title(day):
+    text "Day [day]":
+        style "outline_text"
+        size 110
+        xalign 0.5
+        yalign 0.5
+        at fadeout
+
 
 ## Input screen ################################################################
 ##
@@ -363,26 +383,30 @@ screen main_menu():
     ## This ensures that any other menu screen is replaced.
     tag menu
 
-    add gui.main_menu_background
+    # on "show" action renpy.music.play("daisy hell.mp3")
 
-    ## This empty frame darkens the main menu.
-    frame:
-        style "main_menu_frame"
+    add Tile("minigame background") at WaveBackground
+
+    add "gui/title.png" zoom 0.7 xalign 0.5 yalign 0.25
 
     ## The use statement includes another screen inside this one. The actual
     ## contents of the main menu are in the navigation screen.
-    use navigation
+    #use navigation
 
-    if gui.show_name:
+    hbox:
+        xalign 0.5
+        yalign 0.85
 
-        vbox:
-            style "main_menu_vbox"
+        spacing 20
 
-            text "[config.name!t]":
-                style "main_menu_title"
-
-            text "[config.version]":
-                style "main_menu_version"
+        textbutton _("Start") action Start()
+        textbutton _("Load") action ShowMenu("load")
+        textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("Credits") action ShowMenu("about")
+        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+            textbutton _("Help") action ShowMenu("help")
+        if renpy.variant("pc"):
+            textbutton _("Quit") action Quit(confirm=not main_menu)
 
 
 style main_menu_frame is empty

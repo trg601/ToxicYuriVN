@@ -31,7 +31,7 @@ screen streamer_window(game):
         ysize STREAMER_WINDOW_HEIGHT
         button action Function(game.click_inventory)
         background "#583051ff"
-        add "robot" crop (20, -50, STREAMER_WINDOW_WIDTH, STREAMER_WINDOW_HEIGHT)
+        add "daisy neutral" crop (200, 260, STREAMER_WINDOW_WIDTH, STREAMER_WINDOW_HEIGHT)
         use window_frame(x=-2, width=STREAMER_WINDOW_WIDTH, height=STREAMER_WINDOW_HEIGHT)
 
 screen minigame(game, title="", background_color="#290b48ff"):
@@ -40,6 +40,7 @@ screen minigame(game, title="", background_color="#290b48ff"):
     add Tile("minigame background") at WaveBackground
 
     on "show" action SetVariable("default_mouse", "hand")
+    on "hide" action SetVariable("default_mouse", None)
 
     add Solid(background_color):
         xpos MINIGAME_WINDOW_X

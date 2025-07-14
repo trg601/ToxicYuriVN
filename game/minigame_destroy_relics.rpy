@@ -110,6 +110,7 @@ init python:
 
             if len(self.relics) == 0:
                 renpy.notify("Relic(s) destroyed!")
+                default_mouse = None
                 close_inventory()
                 return 1
 
