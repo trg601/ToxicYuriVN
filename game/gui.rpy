@@ -194,6 +194,9 @@ define gui.check_button_text_hover_color = COLOR_HOVER
 define gui.check_button_text_selected_color = COLOR_SELECT
 
 define gui.confirm_button_text_xalign = 0.5
+define gui.confirm_button_text_idle_color = COLOR_TEXT
+define gui.confirm_button_text_hover_color = COLOR_HOVER
+define gui.confirm_button_text_selected_color = COLOR_SELECT
 
 define gui.page_button_borders = Borders(15, 6, 15, 6)
 define gui.page_button_text_idle_color = COLOR_TEXT_MENU

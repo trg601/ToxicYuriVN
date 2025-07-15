@@ -24,7 +24,7 @@ init python:
                     self.y + garlic_size > by and self.y < by + height)
 
     garlic_size = 90
-    garlic_per_pizza = 10
+    garlic_per_pizza = 8
 
     class PizzaDegarlickingGame(renpy.Displayable):
         def __init__(self, **kwargs):
@@ -111,6 +111,9 @@ init python:
                     garlic_piece.active = False
                     self.garlic_remaining -= 1
                     renpy.restart_interaction()
+                    global show_streamer_text, streamer_text
+                    show_streamer_text = True
+                    streamer_text = "Maybe I should take some garlic..."
                 elif garlic_piece.in_bounds(STREAMER_WINDOW_X, STREAMER_WINDOW_Y, STREAMER_WINDOW_WIDTH, STREAMER_WINDOW_HEIGHT):
                     if not self.try_give_garlic(garlic_piece):
                         center_x = STREAMER_WINDOW_X + STREAMER_WINDOW_WIDTH / 2
@@ -191,9 +194,6 @@ init python:
                         if abs(dy) > 90:
                             self.held_garlic.velocity_y = dy * 0.15
                     self.held_garlic = None
-            # elif ev.type == pygame.KEYDOWN:
-            #     if ev.key == pygame.K_LEFT:
-            #         self.fill_garlic(500)
             
             if self.garlic_remaining <= 0 and self.pizza_target == self.pizza_offset:
                 if self.pizza_remaining > 0:

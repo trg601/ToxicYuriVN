@@ -2,6 +2,7 @@
 init python:
     import pygame
     import random
+    import math
 
     class Relic:
         def __init__(self, x, y, scale):
@@ -11,7 +12,7 @@ init python:
             self.scale = scale
             self.index = 0
             self.shake_timer = 0.0
-            self.hp = round(15 * scale)
+            self.hp = math.ceil(10 * scale)
             self.stage_hp = self.hp
         
         def split(self, relics):
@@ -93,6 +94,11 @@ init python:
                                 self.relics.remove(relic)
                                 if relic.scale > 0.25:
                                     relic.split(self.relics)
+                                if relic.scale == 0.5:
+                                    global show_streamer_text, streamer_text
+                                    show_streamer_text = True
+                                    streamer_text = "Maybe I should take a relic shard... For later..."
+                                    renpy.restart_interaction()
                         elif relic.scale < 0.5:
                             self.drag_relic = relic
                             self.drag_offset_x = relic.x - x

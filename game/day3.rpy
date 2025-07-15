@@ -3,7 +3,7 @@ label day3:
     play music "yuri waltz.mp3"
     show screen day_title(3)
     show daisy exsasperated at left with fastdissolve
-    daisy "Tulong, when I'm through trimming these rose bushes I am going to need those hedge clipper."
+    daisy "Tulong, when I'm through trimming these rose bushes I am going to need those hedge clippers."
     
     daisy "And I can't use them if they're in your stomach."
     

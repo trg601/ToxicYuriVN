@@ -198,6 +198,9 @@ init python:
             else:
                 self.rice_counted += self.rice_held
             self.rice_held = 0
+            global show_streamer_text, streamer_text
+            show_streamer_text = True
+            streamer_text = "Maybe I should put some rice in my folder... Just in case..."
             renpy.restart_interaction()  # Ensure the label updates after rice is counted
         
         def click_inventory(self):

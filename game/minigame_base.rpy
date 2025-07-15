@@ -20,9 +20,14 @@ transform WaveBackground:
 screen window_frame(x=0, y=0, width=800, height=600):
     add Frame("gui/window frame.png", 75, 75) xpos x ypos y xoffset -8 yoffset -8 xsize width + 12 ysize height + 12
 
+default show_streamer_text = False
+default streamer_text = "Maybe I should take some..."
+
 screen streamer_window(game):
     # Lil "streamer" view of daisy bot
     tag streamer_window
+
+    on "show" action SetVariable("show_streamer_text", False)
 
     frame:
         xpos STREAMER_WINDOW_X
@@ -33,6 +38,24 @@ screen streamer_window(game):
         background "#583051ff"
         add "daisy neutral" crop (200, 260, STREAMER_WINDOW_WIDTH, STREAMER_WINDOW_HEIGHT)
         use window_frame(x=-2, width=STREAMER_WINDOW_WIDTH, height=STREAMER_WINDOW_HEIGHT)
+    
+    if show_streamer_text:
+        vbox:
+            xpos STREAMER_WINDOW_X + 20
+            ypos STREAMER_WINDOW_Y - 130
+            xsize STREAMER_WINDOW_WIDTH - 40
+            ysize 100
+            text streamer_text:
+                color COLOR_TEXT_MENU
+                size 25
+                yalign 1.0
+                at streamer_text_fade
+
+transform streamer_text_fade:
+    alpha 0.0
+    ease 1.0 alpha 1.0
+    ease 3.0 alpha 1.0
+    ease 1.0 alpha 0.0
 
 screen minigame(game, title="", background_color="#290b48ff"):
     tag minigame

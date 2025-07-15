@@ -122,7 +122,7 @@ screen say(who, what):
         ysize gui.textbox_height - 60
         xalign 0.0
         yalign gui.textbox_yalign
-        yoffset -55
+        yoffset -40
         xoffset 280
         xfit True
         yfit True
@@ -144,7 +144,7 @@ style namebox_label is say_label
 
 style window:
     xalign 0.5
-    yoffset -40
+    yoffset -25
     xsize gui.dialogue_width
     yalign gui.textbox_yalign
     ysize gui.textbox_height
@@ -170,7 +170,7 @@ style say_dialogue:
     properties gui.text_properties("dialogue")
 
     xpos gui.dialogue_xpos
-    xsize gui.dialogue_width - gui.dialogue_xpos
+    xsize gui.dialogue_width - gui.dialogue_xpos * 2
     ypos gui.dialogue_ypos
 
 
